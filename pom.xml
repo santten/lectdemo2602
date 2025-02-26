@@ -42,9 +42,9 @@
         <version>3.4.1</version>
         <configuration>
           <archive>
-            <manigest>
+            <manifest>
               <mainClass>Calc</mainClass>
-            </manigest>
+            </manifest>
           </archive>
         </configuration>
       </plugin>
