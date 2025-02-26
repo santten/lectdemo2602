@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+
+    tools {
+        maven "maven399"
+    }
+
+    stages {
+        stage('git check'){
+            steps {
+                git branch: 'main', url: 'https://github.com/santten/lectdemo2602.git'
+            }
+        }
+        
+        stage('build') {
+            steps {
+                bat "mvn -Dmaven.test.failure.ignore=true clean package"
+            }
+
+            post {
+                success {
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                    archiveArtifacts 'target/*.jar'
+                }
+            }
+        }
+    }
+}
